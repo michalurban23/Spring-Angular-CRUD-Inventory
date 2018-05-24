@@ -1,20 +1,25 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs/Observable';
+import { Observable, of } from "rxjs";
 import { catchError, map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import {Item} from './item';
+import { Item } from "./item";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class ItemService {
 
-    constructor(private http: HttpClient) {}
+    airportsUrl = "http://localhost:8080" + "/items";
+
+    constructor(private http: HttpClient) {
+    }
 
     getItems (): Observable<Item[]> {
-        return this.http.get<Item[]>('//localhost:8080/items')
-            .pipe(
-                catchError(this.handleError('get', []))
-            );
+        return this.http.get<Item[]>(this.airportsUrl)
+                        .pipe(
+                            catchError(this.handleError('get', []))
+                        );
     }
 
     private handleError<T> (operation = 'operation', result?: T) {

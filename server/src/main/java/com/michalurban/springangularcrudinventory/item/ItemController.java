@@ -19,7 +19,8 @@ public class ItemController {
 
     @GetMapping("")
     public Iterable<Item> index() {
-        return repository.findAll(PageRequest.of(0,5));
+        // return repository.findAll(PageRequest.of(0,5));
+        return repository.findAll();
     }
 
 

@@ -1,6 +1,7 @@
 server/target/
-
 client/node_modules/
+client/.gitignore
+client/README*
 !.mvn/wrapper/maven-wrapper.jar
 
 
